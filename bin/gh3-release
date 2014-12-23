@@ -5,9 +5,19 @@ var path = require('path');
 var log = require('verbalize');
 var argv = require('minimist')(process.argv.slice(2));
 var config = require('config');
+var Api = require('../lib/gh3-api');
 
 log.info('Config', config);
 
+var Debug = require('console-debug');
+
+var console = new Debug({
+    uncaughtExceptionCatch: false, // Do we want to catch uncaughtExceptions?
+    consoleFilter: [], // Filter these console output types, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
+    logToFile: true, // if true, will put console output in a log file folder called 'logs'
+    logFilter: ['LOG','DEBUG','INFO'], // Examples: Filter these types to not log to file, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
+    colors: true // do we want pretty pony colors in our console output?
+}); 
 
 /**
  * Everything in the file should be customized
@@ -22,17 +32,11 @@ log.runner = 'gh3releaseio';
 */
 
 // Use `-t` or `--task` to specify the text to append
-var task = argv._[1] || argv.t || argv.task;
-
-
-if (!task) {
-  log.error('No tasks will specified');
-}
-else {
-  log.info('Your task is ', task);
-}
+var token = argv.t || argv.token || config.get('GitHub.Token');
 
 
 /**
  * Application
  */
+var api = new Api(token, config.get('GitHub.Repo'));
+api.getNotes('daily_20141218...daily_20141219');
