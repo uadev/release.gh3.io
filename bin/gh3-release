@@ -11,13 +11,13 @@ log.info('Config', config);
 
 var Debug = require('console-debug');
 
-var console = new Debug({
-    uncaughtExceptionCatch: true, // Do we want to catch uncaughtExceptions?
-    consoleFilter: [], // Filter these console output types, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
-    logToFile: true, // if true, will put console output in a log file folder called 'logs'
-    logFilter: ['LOG','DEBUG','INFO'], // Examples: Filter these types to not log to file, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
-    colors: true // do we want pretty pony colors in our console output?
-}); 
+//var console = new Debug({
+//    uncaughtExceptionCatch: true, // Do we want to catch uncaughtExceptions?
+//    consoleFilter: ['LOG'], // Filter these console output types, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
+//    logToFile: true, // if true, will put console output in a log file folder called 'logs'
+//    logFilter: ['LOG','DEBUG','INFO'], // Examples: Filter these types to not log to file, Examples: 'LOG', 'WARN', 'ERROR', 'DEBUG', 'INFO'
+//    colors: true // do we want pretty pony colors in our console output?
+//}); 
 
 /**
  * Everything in the file should be customized
@@ -33,14 +33,19 @@ log.runner = 'gh3releaseio';
 
 // Use `-t` or `--task` to specify the text to append
 var token = argv.t || argv.token || config.get('GitHub.Token');
+var repo = argv.r || argv.repo || config.get('GitHub.Repo');
+var interval = argv.i || argv.interval || argv.d || argv.diff;
 
 
 /**
  * Application
  */
+ 
+console.log('T:', token, repo, interval);
+
 try {
-    var api = new Api(token, config.get('GitHub.Repo'));
-    api.getNotes('daily_20141218...daily_20141219');
+    var api = new Api(token, repo);
+    api.getNotes(interval);
 } catch(e) {
    log.error(e.message); 
 }
