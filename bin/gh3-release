@@ -16,32 +16,23 @@ log.info('Config', config);
 
 // Verbalize `runner`
 log.runner = 'gh3releaseio';
-var file = 'Todo.md';
+
+/**
+* Taking arguments
+*/
 
 // Use `-t` or `--task` to specify the text to append
 var task = argv._[1] || argv.t || argv.task;
 
 
 if (!task) {
-  log.error('No tasks will be appended to "' + file + '" since you didn\'t specify anything.');
+  log.error('No tasks will specified');
+}
+else {
+  log.info('Your task is ', task);
 }
 
 
 /**
  * Application
  */
-
-
-if(!fs.existsSync(file)) {
-  fs.writeFileSync(file, '# Tasks\n\n');
-}
-
-fs.appendFile(file, ('- [ ] ' + task + '\n'), function (err) {
-  if (err) {throw err;}
-
-  log.writeln();
-  log.writeln(log.gray('  todo [appended] ') + '\'' + task + '\' to ' + log.bold(file));
-
-  // If all is well, log a success message.
-  log.success('  ' + log.runner + ' [done]');
-});
