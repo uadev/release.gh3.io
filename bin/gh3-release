@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+var log = require('verbalize');
+var argv = require('minimist')(process.argv.slice(2));
+var config = require('config');
+
+log.info('Config', config);
+
+
+/**
+ * Everything in the file should be customized
+ */
+
+
+// Verbalize `runner`
+log.runner = 'gh3releaseio';
+var file = 'Todo.md';
+
+// Use `-t` or `--task` to specify the text to append
+var task = argv._[1] || argv.t || argv.task;
+
+
+if (!task) {
+  log.error('No tasks will be appended to "' + file + '" since you didn\'t specify anything.');
+}
+
+
+/**
+ * Application
+ */
+
+
+if(!fs.existsSync(file)) {
+  fs.writeFileSync(file, '# Tasks\n\n');
+}
+
+fs.appendFile(file, ('- [ ] ' + task + '\n'), function (err) {
+  if (err) {throw err;}
+
+  log.writeln();
+  log.writeln(log.gray('  todo [appended] ') + '\'' + task + '\' to ' + log.bold(file));
+
+  // If all is well, log a success message.
+  log.success('  ' + log.runner + ' [done]');
+});

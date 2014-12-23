@@ -1,0 +1,26 @@
+{
+  "name": "release.gh3.io",
+  "main": "bin/gh3-release",
+  "version": "0.0.1",
+  "authors": [
+    "uadev <yuretsz@gmail.com>"
+  ],
+  "description": "Release notes generator for GitHub v3",
+  "keywords": [
+    "Github",
+    "api",
+    "cli",
+    "release",
+    "notes"
+  ],
+  "license": "MIT",
+  "homepage": "uadev.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
