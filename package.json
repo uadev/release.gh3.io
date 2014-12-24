@@ -23,7 +23,9 @@
   "keywords": [
     "cli",
     "command line",
-    "github"
+    "github",
+    "generator",
+    "release notes"
   ],
   "preferGlobal": true,
   "bin": {
