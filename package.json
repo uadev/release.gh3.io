@@ -22,7 +22,8 @@
   ],
   "keywords": [
     "cli",
-    "command line"
+    "command line",
+    "github"
   ],
   "preferGlobal": true,
   "bin": {
@@ -39,9 +40,9 @@
     "minimist": "~0.0.8",
     "verbalize": "~0.1.1",
     "config": "~1.9.0",
-    "console-debug": "~0.2.1"
   },
   "devDependencies": {
-    "verb": "~0.2.0"
+    "verb": "~0.2.0",
+    "console-debug": "~0.2.1"
   }
 }
