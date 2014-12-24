@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "minimist": "~0.0.8",
-    "config": "~1.9.0",
+    "config": "~1.9.0"
   }
 }
