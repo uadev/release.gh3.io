@@ -7,8 +7,6 @@ var argv = require('minimist')(process.argv.slice(2));
 var config = require('config');
 var Api = require('../lib/gh3-api');
 
-log.info('Config', config);
-
 var Debug = require('console-debug');
 
 var debug = new Debug({
@@ -43,7 +41,5 @@ var interval = argv.i || argv.interval || argv.d || argv.diff;
  * Application
  */
  
-console.log('T:', token, repo, interval);
-
 var api = new Api(token, repo);
 api.getNotes(interval);
