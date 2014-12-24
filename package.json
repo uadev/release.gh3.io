@@ -31,7 +31,7 @@
   "bin": {
     "gh3-release": "./bin/gh3-release"
   },
-  "main": "index.js",
+  "main": "lib/gh3-api/index.js",
   "engines": {
     "node": ">=0.8"
   },
@@ -40,11 +40,6 @@
   },
   "dependencies": {
     "minimist": "~0.0.8",
-    "verbalize": "~0.1.1",
     "config": "~1.9.0",
-  },
-  "devDependencies": {
-    "verb": "~0.2.0",
-    "console-debug": "~0.2.1"
   }
 }
